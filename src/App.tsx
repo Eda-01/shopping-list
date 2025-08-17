@@ -24,7 +24,7 @@ function App() {
   
   const jsConfetti = new JSConfetti();
 
-  // --- Filtre state’leri ---
+
   const [filteredShopId, setFilteredShopId] = useState<number | "all">("all");
   const [filteredCategoryId, setFilteredCategoryId] = useState<number | "all">(
     "all"
@@ -34,12 +34,12 @@ function App() {
   >("all");
   const [filteredName, setFilteredName] = useState("");
 
-  // --- LocalStorage'a kaydet ---
+
   useEffect(() => {
     localStorage.setItem('shopping-list-products', JSON.stringify(products));
   }, [products]);
 
-  // --- Alışveriş Tamamlandı kontrolü ---
+  
   useEffect(() => {
     if (products.length > 0 && products.every((p) => p.isBought)) {
       alert("🎉 Alışveriş Tamamlandı!");
@@ -47,7 +47,7 @@ function App() {
     }
   }, [products]);
 
-  // --- Fuzzy search için Fuse ---
+  
   const fuse = useMemo(
     () =>
       new Fuse(products, {
@@ -57,28 +57,26 @@ function App() {
     [products]
   );
 
-  // --- Filtrelenmiş ürünler ---
   const filteredProducts = useMemo(() => {
     let result = [...products];
 
-    // market filtresi
+ 
     if (filteredShopId !== "all") {
       result = result.filter((p) => p.shop === filteredShopId);
     }
 
-    // kategori filtresi
+
     if (filteredCategoryId !== "all") {
       result = result.filter((p) => p.category === filteredCategoryId);
     }
 
-    // status filtresi
+
     if (filteredStatus === "bought") {
       result = result.filter((p) => p.isBought);
     } else if (filteredStatus === "notBought") {
       result = result.filter((p) => !p.isBought);
     }
 
-    // ürün adı fuzzy search
     if (filteredName.trim()) {
       result = fuse.search(filteredName).map((res) => res.item);
     }
@@ -90,10 +88,10 @@ function App() {
     <Container className="my-4">
       <h1 className="mb-4">🛒 Alışveriş Listesi</h1>
 
-      {/* Ürün ekleme */}
+     
       <ProductForm products={products} setProducts={setProducts} />
 
-      {/* Filtre kutusu */}
+    
       <FilterBox
         filteredShopId={filteredShopId}
         setFilteredShopId={setFilteredShopId}
@@ -105,7 +103,7 @@ function App() {
         setFilteredName={setFilteredName}
       />
 
-      {/* Tablo */}
+  
       <ProductTable products={filteredProducts} setProducts={setProducts} />
     </Container>
   );

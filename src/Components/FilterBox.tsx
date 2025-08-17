@@ -25,7 +25,6 @@ export default function FilterBox({
 }: FilterBoxProps) {
   return (
     <Row className="mb-3 g-3">
-      {/* Market filtresi */}
       <Col md={3}>
         <Form.Select
           value={filteredShopId}
@@ -44,7 +43,7 @@ export default function FilterBox({
         </Form.Select>
       </Col>
 
-      {/* Kategori filtresi */}
+   
       <Col md={3}>
         <Form.Select
           value={filteredCategoryId}
@@ -63,7 +62,7 @@ export default function FilterBox({
         </Form.Select>
       </Col>
 
-      {/* Satın alma durumu */}
+     
       <Col md={3}>
         <div>
           <Form.Check
@@ -90,7 +89,7 @@ export default function FilterBox({
         </div>
       </Col>
 
-      {/* Ürün adı arama */}
+     
       <Col md={3}>
         <Form.Control
           type="text"

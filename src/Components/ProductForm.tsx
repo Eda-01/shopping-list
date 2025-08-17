@@ -34,7 +34,7 @@ export default function ProductForm({ products, setProducts }: ProductFormProps)
 
     setProducts([...products, newProduct]);
 
-    // formu sıfırla
+    
     setName("");
     setShop(shops[0].id);
     setCategory(categories[0].id);
